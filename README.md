@@ -28,7 +28,8 @@ Two one-time installs, then just run the tiny app:
 1. **[.NET 8 Desktop Runtime (x64)](https://dotnet.microsoft.com/download/dotnet/8.0)**
    — the app no longer bundles .NET, so this must be present. (If you have the
    .NET 8 SDK, you already have it.)
-2. **The PawnIo kernel driver** — see first-time setup below (one-time).
+2. **The [PawnIO](https://github.com/namazso/PawnIO) kernel driver** — see
+   first-time setup below (one-time).
 
 - **Windows 10/11 (x64)**
 - The published `.exe` is a small (~5 MB) **framework-dependent single file**.
@@ -36,10 +37,11 @@ Two one-time installs, then just run the tiny app:
 
 > **CPU temperature is read from the CPU's internal thermal sensors, which only a
 > kernel driver can access.** That's a hard Windows limitation — no app, in any
-> language, can read it without a driver. This widget uses the **PawnIo** driver
-> (the same one LibreHardwareMonitor uses). **PawnIo is NOT bundled in the app**
-> — a kernel driver cannot live inside an executable, so it must be installed at
-> the OS level, once (see below).
+> language, can read it without a driver. This widget uses the
+> **[PawnIO](https://github.com/namazso/PawnIO)** driver (the same one
+> LibreHardwareMonitor uses). **PawnIo is NOT bundled in the app** — a kernel
+> driver cannot live inside an executable, so it must be installed at the OS
+> level, once (see below).
 
 ---
 
@@ -141,4 +143,4 @@ src/           ← earlier Rust/eframe prototype (no CPU temp) — legacy
 ## License
 
 MIT. Uses [LibreHardwareMonitorLib](https://github.com/LibreHardwareMonitor/LibreHardwareMonitor)
-(MPL 2.0) and the PawnIo driver.
+(MPL 2.0) and the [PawnIO](https://github.com/namazso/PawnIO) driver (GPL v2).
