@@ -1,1 +1,11 @@
+# Rust (legacy prototype)
 target/
+
+# .NET / C#
+**/bin/
+**/obj/
+*.user
+
+# Built binaries (too large for git — build with `dotnet publish`)
+dist/
+*.exe
