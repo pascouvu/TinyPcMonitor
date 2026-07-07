@@ -1,0 +1,22 @@
+[package]
+name = "pc-monitor"
+version = "0.1.0"
+edition = "2024"
+description = "Tiny always-on-top desktop widget: CPU temp, RAM, disk usage"
+authors = ["Pascal"]
+
+[dependencies]
+auto-launch = "0.6.0"
+eframe = { version = "0.35.0", features = ["glow"] }
+sysinfo = "0.39.5"
+
+[target."cfg(windows)".dependencies]
+serde = { version = "1.0.228", features = ["derive"] }
+wmi = "0.18.4"
+
+[profile.release]
+opt-level = "z"
+lto = true
+codegen-units = 1
+panic = "abort"
+strip = true
