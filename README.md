@@ -23,15 +23,23 @@ Bars turn **orange at 80%** and **red at 90%+** (≈10% free).
 
 ## ⚙️ Requirements
 
+Two one-time installs, then just run the tiny app:
+
+1. **[.NET 8 Desktop Runtime (x64)](https://dotnet.microsoft.com/download/dotnet/8.0)**
+   — the app no longer bundles .NET, so this must be present. (If you have the
+   .NET 8 SDK, you already have it.)
+2. **The PawnIo kernel driver** — see first-time setup below (one-time).
+
 - **Windows 10/11 (x64)**
-- **The PawnIo kernel driver** — see first-time setup below (one-time).
-- The published **`.exe` is self-contained** (bundles .NET) — no runtime install
-  needed. Building from source needs the [.NET 8 SDK](https://dotnet.microsoft.com/download).
+- The published `.exe` is a small (~5 MB) **framework-dependent single file**.
+- Building from source needs the [.NET 8 SDK](https://dotnet.microsoft.com/download).
 
 > **CPU temperature is read from the CPU's internal thermal sensors, which only a
 > kernel driver can access.** That's a hard Windows limitation — no app, in any
 > language, can read it without a driver. This widget uses the **PawnIo** driver
-> (the same one LibreHardwareMonitor uses).
+> (the same one LibreHardwareMonitor uses). **PawnIo is NOT bundled in the app**
+> — a kernel driver cannot live inside an executable, so it must be installed at
+> the OS level, once (see below).
 
 ---
 
@@ -87,10 +95,14 @@ cd csharp
 dotnet publish -c Release
 ```
 
-Output (single self-contained `.exe`):
+Output — a small framework-dependent single-file `.exe` (~5 MB):
 ```
 csharp/bin/Release/net8.0-windows/win-x64/publish/TinyPcMonitor.exe
 ```
+
+> **Self-contained build (no .NET prerequisite, ~159 MB):** if you want a single
+> `.exe` that runs on any PC without .NET installed, build with
+> `dotnet publish -c Release -p:SelfContained=true`.
 
 ---
 
@@ -111,6 +123,7 @@ csharp/bin/Release/net8.0-windows/win-x64/publish/TinyPcMonitor.exe
 
 | Symptom | Fix |
 |---|---|
+| App won't start (double-click does nothing / error about .NET) | Install the **.NET 8 Desktop Runtime (x64)** — the app no longer bundles it. |
 | Temperature shows **—** | PawnIo driver not installed, or the widget isn't running as admin. Do the first-time setup above. |
 | Widget asks for admin every launch | Expected on manual launch. Use the **"Launch on startup"** checkbox for silent boot start. |
 | Temperature still jumps a lot | Normal short spikes under load; it's smoothed over ~3s. The reading is CPU Package. |

@@ -12,11 +12,12 @@
     <Version>0.2.0</Version>
     <Company>Pascal</Company>
     <Product>Tiny PC Monitor</Product>
-    <!-- Single-file, self-contained release build -->
+    <!-- Framework-dependent single-file: small exe, requires .NET 8 Desktop Runtime -->
     <PublishSingleFile>true</PublishSingleFile>
-    <SelfContained>true</SelfContained>
-    <RuntimeIdentifier>win-x64</RuntimeIdentifier>
     <IncludeNativeLibrariesForSelfExtract>true</IncludeNativeLibrariesForSelfExtract>
+    <IncludeAllContentForSelfExtract>true</IncludeAllContentForSelfExtract>
+    <SelfContained>false</SelfContained>
+    <RuntimeIdentifier>win-x64</RuntimeIdentifier>
     <InvariantGlobalization>true</InvariantGlobalization>
   </PropertyGroup>
 
